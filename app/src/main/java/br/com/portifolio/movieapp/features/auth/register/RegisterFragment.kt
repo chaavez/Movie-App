@@ -74,6 +74,8 @@ class RegisterFragment : Fragment() {
                     binding.progressLoading.isVisible = false
                     Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
                 }
+
+                else -> {}
             }
         }
     }

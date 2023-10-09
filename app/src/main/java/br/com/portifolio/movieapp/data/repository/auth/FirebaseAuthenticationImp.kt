@@ -39,7 +39,7 @@ class FirebaseAuthenticationImp @Inject constructor(
         }
     }
 
-    override suspend fun forgot(email: String) {
+    override suspend fun forgotPassword(email: String) {
         return suspendCoroutine { continuation ->
             firebaseAuth.sendPasswordResetEmail(email)
                 .addOnCompleteListener { task ->

@@ -6,5 +6,5 @@ interface FirebaseAuthentication {
 
     suspend fun register(email: String, password: String)
 
-    suspend fun forgot(email: String)
+    suspend fun forgotPassword(email: String)
 }

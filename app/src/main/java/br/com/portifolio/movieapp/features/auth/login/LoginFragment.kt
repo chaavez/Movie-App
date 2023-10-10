@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import br.com.portifolio.movieapp.R
 import br.com.portifolio.movieapp.databinding.FragmentLoginBinding
 import br.com.portifolio.movieapp.utils.StateView
+import br.com.portifolio.movieapp.utils.hideKeyboard
+import br.com.portifolio.movieapp.utils.isEmailValid
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,6 +44,10 @@ class LoginFragment : Fragment() {
             validateData()
         }
 
+        binding.forgotPasswordButton.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+        }
+
         Glide
             .with(requireContext())
             .load(R.drawable.loading)
@@ -50,8 +57,17 @@ class LoginFragment : Fragment() {
     private fun validateData() {
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
-        //fazer logica de login do usuario
-        loginUser(email, password)
+
+        if (email.isEmailValid()) {
+            if (password.isNotEmpty()) {
+                hideKeyboard()
+                loginUser(email, password)
+            } else {
+
+            }
+        } else {
+            Toast.makeText(requireContext(), "E-mail inválido", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun loginUser(email: String, password: String) {
@@ -78,7 +94,6 @@ class LoginFragment : Fragment() {
             }
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

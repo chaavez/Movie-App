@@ -11,6 +11,8 @@ import androidx.fragment.app.viewModels
 import br.com.portifolio.movieapp.R
 import br.com.portifolio.movieapp.databinding.FragmentRegisterBinding
 import br.com.portifolio.movieapp.utils.StateView
+import br.com.portifolio.movieapp.utils.hideKeyboard
+import br.com.portifolio.movieapp.utils.isEmailValid
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -51,8 +53,16 @@ class RegisterFragment : Fragment() {
     private fun validateData() {
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
-        //fazer logica de registrar usuario
-        registerUser(email, password)
+        if (email.isEmailValid()) {
+            if (password.isNotEmpty()) {
+                hideKeyboard()
+                registerUser(email, password)
+            } else {
+
+            }
+        } else {
+            Toast.makeText(requireContext(), "E-mail inválido", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun registerUser(email: String, password: String) {

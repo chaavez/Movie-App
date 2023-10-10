@@ -11,6 +11,8 @@ import androidx.fragment.app.viewModels
 import br.com.portifolio.movieapp.R
 import br.com.portifolio.movieapp.databinding.FragmentForgotPasswordBinding
 import br.com.portifolio.movieapp.utils.StateView
+import br.com.portifolio.movieapp.utils.hideKeyboard
+import br.com.portifolio.movieapp.utils.isEmailValid
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,8 +51,12 @@ class ForgotPasswordFragment : Fragment() {
 
     private fun validateData() {
         val email = binding.newPasswordEditText.text.toString()
-        //fazer logica de login do usuario
-        forgotPassword(email)
+        if(email.isEmailValid()) {
+            hideKeyboard()
+            forgotPassword(email)
+        } else {
+            Toast.makeText(requireContext(), "E-mail inválido", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun forgotPassword(email: String) {

@@ -137,7 +137,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/sign_in_with_password_home_auth_button"
+            android:id="@+id/sign_in_with_password_button"
             style="@style/ThemeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_with_password_home_auth_button"
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_with_password_button"
             app:layout_constraintVertical_bias="0.80">
 
             <TextView
@@ -172,7 +172,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/text_sign_up_home_auth_text_view"
+                android:id="@+id/sign_up_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

@@ -13,6 +13,7 @@ import br.com.portifolio.movieapp.R
 import br.com.portifolio.movieapp.databinding.FragmentLoginBinding
 import br.com.portifolio.movieapp.utils.StateView
 import br.com.portifolio.movieapp.utils.hideKeyboard
+import br.com.portifolio.movieapp.utils.initToolbar
 import br.com.portifolio.movieapp.utils.isEmailValid
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,7 +36,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        initToolbar(binding.toolbar)
         initListeners()
     }
 

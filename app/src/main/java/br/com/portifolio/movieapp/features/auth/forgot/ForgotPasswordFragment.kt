@@ -10,10 +10,12 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import br.com.portifolio.movieapp.R
 import br.com.portifolio.movieapp.databinding.FragmentForgotPasswordBinding
+import br.com.portifolio.movieapp.utils.FirebaseHelper
 import br.com.portifolio.movieapp.utils.StateView
 import br.com.portifolio.movieapp.utils.hideKeyboard
 import br.com.portifolio.movieapp.utils.initToolbar
 import br.com.portifolio.movieapp.utils.isEmailValid
+import br.com.portifolio.movieapp.utils.showSnackBar
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,11 +54,13 @@ class ForgotPasswordFragment : Fragment() {
 
     private fun validateData() {
         val email = binding.newPasswordEditText.text.toString()
-        if(email.isEmailValid()) {
+        if (email.isEmailValid()) {
             hideKeyboard()
             forgotPassword(email)
         } else {
-            Toast.makeText(requireContext(), "E-mail inválido", Toast.LENGTH_SHORT).show()
+            showSnackBar(
+                message = R.string.text_email_empty_forgot_password_fragment
+            )
         }
     }
 
@@ -68,16 +72,16 @@ class ForgotPasswordFragment : Fragment() {
                 }
 
                 is StateView.Success -> {
-                    Toast.makeText(
-                        requireContext(),
-                        "Email enviado com sucesso!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showSnackBar(
+                        message = R.string.text_send_email_success_forgot_password_fragment
+                    )
                 }
 
                 is StateView.Error -> {
                     binding.progressLoading.isVisible = false
-                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                    showSnackBar(
+                        message = FirebaseHelper.validError(error = stateView.message ?: "")
+                    )
                 }
 
                 else -> {}

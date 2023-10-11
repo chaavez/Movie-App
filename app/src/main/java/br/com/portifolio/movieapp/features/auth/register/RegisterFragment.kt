@@ -1,19 +1,22 @@
 package br.com.portifolio.movieapp.features.auth.register
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import br.com.portifolio.movieapp.R
 import br.com.portifolio.movieapp.databinding.FragmentRegisterBinding
+import br.com.portifolio.movieapp.features.MainActivity
+import br.com.portifolio.movieapp.utils.FirebaseHelper
 import br.com.portifolio.movieapp.utils.StateView
 import br.com.portifolio.movieapp.utils.hideKeyboard
 import br.com.portifolio.movieapp.utils.initToolbar
 import br.com.portifolio.movieapp.utils.isEmailValid
+import br.com.portifolio.movieapp.utils.showSnackBar
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -59,10 +62,14 @@ class RegisterFragment : Fragment() {
                 hideKeyboard()
                 registerUser(email, password)
             } else {
-
+                showSnackBar(
+                    message = R.string.text_password_empty_register_fragment
+                )
             }
         } else {
-            Toast.makeText(requireContext(), "E-mail inválido", Toast.LENGTH_SHORT).show()
+            showSnackBar(
+                message = R.string.text_email_empty_register_fragment
+            )
         }
     }
 
@@ -74,16 +81,18 @@ class RegisterFragment : Fragment() {
                 }
 
                 is StateView.Success -> {
-                    Toast.makeText(
-                        requireContext(),
-                        "Cadastro realizado com sucesso!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
+                    requireActivity().finish()
+                    showSnackBar(
+                        message = R.string.text_send_email_success_forgot_password_fragment
+                    )
                 }
 
                 is StateView.Error -> {
                     binding.progressLoading.isVisible = false
-                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                    showSnackBar(
+                        message = FirebaseHelper.validError(error = stateView.message ?: "")
+                    )
                 }
 
                 else -> {}

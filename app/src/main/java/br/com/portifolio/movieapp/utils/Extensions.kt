@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import br.com.portifolio.movieapp.R
+import com.google.android.material.snackbar.Snackbar
 
 fun Fragment.initToolbar(toolbar: Toolbar, showIconNavigation: Boolean = true) {
     (activity as AppCompatActivity).setSupportActionBar(toolbar)
@@ -28,6 +29,13 @@ fun Fragment.hideKeyboard() {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
         view.clearFocus()
     }
+}
+
+fun Fragment.showSnackBar(
+    message: Int,
+    duration: Int = Snackbar.LENGTH_SHORT
+) {
+    view?.let { Snackbar.make(it, message, duration).show() }
 }
 
 fun String.isEmailValid(): Boolean {

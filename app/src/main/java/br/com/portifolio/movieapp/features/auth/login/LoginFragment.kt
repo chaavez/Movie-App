@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import br.com.portifolio.movieapp.R
 import br.com.portifolio.movieapp.databinding.FragmentLoginBinding
-import br.com.portifolio.movieapp.features.MainActivity
+import br.com.portifolio.movieapp.features.main.MainActivity
 import br.com.portifolio.movieapp.utils.FirebaseHelper
 import br.com.portifolio.movieapp.utils.StateView
 import br.com.portifolio.movieapp.utils.hideKeyboard

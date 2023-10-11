@@ -1,4 +1,4 @@
-package br.com.portifolio.movieapp.features
+package br.com.portifolio.movieapp.features.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

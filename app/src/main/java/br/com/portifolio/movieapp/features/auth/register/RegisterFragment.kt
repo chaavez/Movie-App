@@ -10,7 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import br.com.portifolio.movieapp.R
 import br.com.portifolio.movieapp.databinding.FragmentRegisterBinding
-import br.com.portifolio.movieapp.features.MainActivity
+import br.com.portifolio.movieapp.features.main.MainActivity
 import br.com.portifolio.movieapp.utils.FirebaseHelper
 import br.com.portifolio.movieapp.utils.StateView
 import br.com.portifolio.movieapp.utils.hideKeyboard

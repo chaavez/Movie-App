@@ -4,7 +4,6 @@ import br.com.portifolio.movieapp.data.api.ServiceApi
 import br.com.portifolio.movieapp.data.model.GenresResponse
 import br.com.portifolio.movieapp.data.model.MovieResponse
 import br.com.portifolio.movieapp.domain.repository.movie.MovieRepository
-import br.com.portifolio.movieapp.utils.Constants.Movie.LANGUAGE
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
@@ -13,7 +12,7 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun getGenres(apiKey: String, language: String?): GenresResponse {
         return serviceApi.getGenres(
             apiKey,
-            LANGUAGE
+            language
         )
     }
 
@@ -24,7 +23,7 @@ class MovieRepositoryImpl @Inject constructor(
     ): List<MovieResponse> {
         return serviceApi.getMoviesByGenre(
             apiKey,
-            LANGUAGE,
+            language,
             genreId
         ).results ?: emptyList()
     }

@@ -4,6 +4,7 @@ import br.com.portifolio.movieapp.data.model.GenreResponse
 import br.com.portifolio.movieapp.data.model.MovieResponse
 import br.com.portifolio.movieapp.domain.model.Genre
 import br.com.portifolio.movieapp.domain.model.Movie
+import br.com.portifolio.movieapp.features.model.GenreFeature
 
 fun GenreResponse.toDomain(): Genre {
     return Genre(
@@ -28,5 +29,13 @@ fun MovieResponse.toDomain(): Movie {
         video,
         voteAverage,
         voteCount
+    )
+}
+
+fun Genre.toFeature(): GenreFeature {
+    return GenreFeature(
+        id = id,
+        name = name,
+        movies = emptyList()
     )
 }

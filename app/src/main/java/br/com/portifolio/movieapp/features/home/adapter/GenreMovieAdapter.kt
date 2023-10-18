@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.portifolio.movieapp.databinding.GenreItemBinding
 import br.com.portifolio.movieapp.features.model.GenreFeature
 
-class GenreMovieAdapter :
-    ListAdapter<GenreFeature, GenreMovieAdapter.HomeViewHolder>(DIFF_CALLBACK) {
+class GenreMovieAdapter : ListAdapter<GenreFeature, GenreMovieAdapter.HomeViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<GenreFeature>() {

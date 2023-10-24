@@ -1,4 +1,4 @@
-package br.com.portifolio.movieapp.features.home.adapter
+package br.com.portifolio.movieapp.features.main.bottombar.home.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

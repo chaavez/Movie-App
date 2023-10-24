@@ -1,4 +1,4 @@
-package br.com.portifolio.movieapp.features.home.adapter
+package br.com.portifolio.movieapp.features.main.bottombar.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.portifolio.movieapp.databinding.GenreItemBinding
 import br.com.portifolio.movieapp.features.model.GenreFeature
 
-class GenreMovieAdapter : ListAdapter<GenreFeature, GenreMovieAdapter.HomeViewHolder>(DIFF_CALLBACK) {
+class GenreMovieAdapter(
+    private val showAllListener: (Int) -> Unit
+) : ListAdapter<GenreFeature, GenreMovieAdapter.HomeViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<GenreFeature>() {
@@ -46,7 +48,12 @@ class GenreMovieAdapter : ListAdapter<GenreFeature, GenreMovieAdapter.HomeViewHo
 
         val movieAdapter = MovieAdapter(holder.binding.root.context)
         val layoutManager =
-            LinearLayoutManager(holder.binding.root.context, LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(holder.binding.root.context, LinearLayoutManager.HORIZONTAL, false
+            )
+
+        holder.binding.textShowAll.setOnClickListener {
+            genre.id?.let { showAllListener(it) }
+        }
 
         holder.binding.moviesRecyclerView.layoutManager = layoutManager
         holder.binding.moviesRecyclerView.adapter = movieAdapter

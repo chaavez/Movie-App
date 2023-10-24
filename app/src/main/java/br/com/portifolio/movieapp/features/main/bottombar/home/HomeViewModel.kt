@@ -1,4 +1,4 @@
-package br.com.portifolio.movieapp.features.home
+package br.com.portifolio.movieapp.features.main.bottombar.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData

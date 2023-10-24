@@ -1,4 +1,4 @@
-package br.com.portifolio.movieapp.features.download
+package br.com.portifolio.movieapp.features.main.bottombar.download
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

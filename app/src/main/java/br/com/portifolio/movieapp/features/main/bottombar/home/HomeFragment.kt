@@ -1,4 +1,4 @@
-package br.com.portifolio.movieapp.features.home
+package br.com.portifolio.movieapp.features.main.bottombar.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import android.widget.GridLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import br.com.portifolio.movieapp.databinding.FragmentHomeBinding
-import br.com.portifolio.movieapp.features.home.adapter.GenreMovieAdapter
+import br.com.portifolio.movieapp.features.main.bottombar.home.adapter.GenreMovieAdapter
 import br.com.portifolio.movieapp.features.model.GenreFeature
 import br.com.portifolio.movieapp.utils.StateView
 import dagger.hilt.android.AndroidEntryPoint
@@ -88,7 +89,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        genreMovieAdapter = GenreMovieAdapter()
+        genreMovieAdapter = GenreMovieAdapter { genreId ->
+            val action = HomeFragmentDirections
+                .actionMenuHomeToMovieGenreFragment(genreId)
+            findNavController().navigate(action)
+        }
 
         with(binding.genreRecyclerView) {
             setHasFixedSize(true)

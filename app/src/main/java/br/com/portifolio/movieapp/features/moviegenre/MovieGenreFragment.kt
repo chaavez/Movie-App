@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import br.com.portifolio.movieapp.R
 import br.com.portifolio.movieapp.databinding.FragmentMovieGenreBinding
 import br.com.portifolio.movieapp.features.main.bottombar.home.adapter.MovieAdapter
 import br.com.portifolio.movieapp.utils.StateView
@@ -44,7 +45,10 @@ class MovieGenreFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        movieAdapter = MovieAdapter(requireContext())
+        movieAdapter = MovieAdapter(
+            requireContext(),
+            R.layout.movie_genre_item
+        )
 
         with(binding.moviesRecyclerView) {
             setHasFixedSize(true)
@@ -62,6 +66,7 @@ class MovieGenreFragment : Fragment() {
 
                 is StateView.Success -> {
                     binding.progressBar.isVisible = false
+                    binding.textTittle.text = args.name
                     movieAdapter.submitList(stateView.data)
                 }
 
@@ -71,7 +76,6 @@ class MovieGenreFragment : Fragment() {
             }
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
